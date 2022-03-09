@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'dart:typed_data';
 import 'dart:ui';
 
@@ -534,10 +533,10 @@ class TouchyCanvas {
 //    // TODO: implement rotate
 //  }
 
-//
-//  void scale(double sx, [double sy]) {
-//    // TODO: implement scale
-//  }
+  void scale(double sx, [double? sy]) {
+    _canvas.scale(sx, sy);
+    _shapeHandler.scale(sx, sy);
+  }
 
 //
 //  void skew(double sx, double sy) {
@@ -549,11 +548,10 @@ class TouchyCanvas {
 //    // TODO: implement transform
 //  }
 
-//
-//  void translate(double dx, double dy) {
-//   _canvas.translate(dx, dy);
-//    // TODO: implement translate
-//  }
+  void translate(double dx, double dy) {
+    _canvas.translate(dx, dy);
+    _shapeHandler.translate(dx, dy);
+  }
 
 //
 //  void drawAtlas(Image atlas, List<RSTransform> transforms, List<Rect> rects,

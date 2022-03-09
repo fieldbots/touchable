@@ -11,6 +11,11 @@ class ShapeHandler {
   final List<ClipShapeItem> clipItems = [];
   final Set<GestureType> _registeredGestures = {};
 
+  double _scaleX = 1;
+  double _scaleY = 1;
+  double _translationX = 0;
+  double _translationY = 0;
+
   Set<GestureType> get registeredGestures => _registeredGestures;
 
   void addShape(Shape shape) {
@@ -88,8 +93,8 @@ class ShapeHandler {
     ScrollController? scrollController,
     AxisDirection direction = AxisDirection.down,
   }) async {
-    var touchPoint = _getActualOffsetFromScrollController(
-        TouchCanvasUtil.getPointFromGestureDetail(gesture.gestureDetail), scrollController, direction);
+    var touchPoint = _getActualOffsetWithScaleAndTranslation(_getActualOffsetFromScrollController(
+        TouchCanvasUtil.getPointFromGestureDetail(gesture.gestureDetail), scrollController, direction));
     if (!_registeredGestures.contains(gesture.gestureType)) return;
 
     var touchedShapes = _getTouchedShapes(touchPoint);
@@ -100,5 +105,19 @@ class ShapeHandler {
         callback();
       }
     }
+  }
+
+  Offset _getActualOffsetWithScaleAndTranslation(Offset touchPoint) {
+    return Offset((touchPoint.dx / _scaleX) + _translationX, (touchPoint.dy / _scaleY) + _translationY);
+  }
+
+  void scale(double sx, [double? sy]) {
+    _scaleX = sx;
+    _scaleY = sy ?? sx;
+  }
+
+  void translate(double sx, double sy) {
+    _translationX = sx;
+    _translationY = sy;
   }
 }

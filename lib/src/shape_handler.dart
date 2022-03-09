@@ -108,7 +108,7 @@ class ShapeHandler {
   }
 
   Offset _getActualOffsetWithScaleAndTranslation(Offset touchPoint) {
-    return Offset((touchPoint.dx + _translationX) / _scaleX, (touchPoint.dy + _translationY) / _scaleY);
+    return Offset((touchPoint.dx - _translationX) / _scaleX, (touchPoint.dy - _translationY) / _scaleY);
   }
 
   void scale(double sx, [double? sy]) {

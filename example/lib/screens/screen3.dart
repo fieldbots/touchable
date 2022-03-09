@@ -28,7 +28,7 @@ class _Screen3State extends State<Screen3> with SingleTickerProviderStateMixin {
                   gesturesToOverride: [GestureType.onTapUp, GestureType.onTapDown],
                   builder: (context) {
                     return CustomPaint(
-                      painter: MyPainter(context, (String circleColor) {
+                      painter: MyPainter(context, color, (String circleColor) {
                         setState(() {
                           switch (circleColor) {
                             case 'orange':
@@ -66,17 +66,19 @@ class _Screen3State extends State<Screen3> with SingleTickerProviderStateMixin {
 
 class MyPainter extends CustomPainter {
   Function(String) setState;
+  final Color color;
   final BuildContext context;
 
-  MyPainter(this.context, this.setState);
+  MyPainter(this.context, this.color, this.setState);
 
   @override
   void paint(Canvas _canvas, Size size) {
     TouchyCanvas canvas = TouchyCanvas(context, _canvas);
-    canvas.translate(100, 100);
+    canvas.scale(0.5, 0.5);
 
-    canvas.drawRect(Rect.fromLTWH(100, 100, 100, 300), Paint()..color = Colors.blue, onTapDown: (_) {
-      setState('pink');
+    canvas.translate(0, 100);
+    canvas.drawRect(Rect.fromLTWH(100, 100, 100, 200), Paint()..color = Colors.blue, onTapDown: (_) {
+      setState(color == Colors.pinkAccent ? 'grey' : 'pink');
     });
   }
 

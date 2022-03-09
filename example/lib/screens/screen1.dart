@@ -26,6 +26,10 @@ class _Screen1State extends State<Screen1> with SingleTickerProviderStateMixin {
                 width: 400,
                 height: 900,
                 child: CanvasTouchDetector(
+                  gesturesToOverride: [
+                    GestureType.onTapDown,
+                    GestureType.onTapUp,
+                  ],
                   builder: (context) {
                     return CustomPaint(
                       painter: MyPainter(context, (String circleColor) {

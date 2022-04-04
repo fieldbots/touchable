@@ -1,7 +1,6 @@
 import 'dart:typed_data';
 import 'dart:ui';
 
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart' hide Image;
 import 'package:touchable/src/canvas_touch_detector.dart';
 import 'package:touchable/src/shape_handler.dart';
@@ -51,7 +50,8 @@ class TouchyCanvas {
     _shapeHandler.addShape(ClipRRectShape(rrect));
   }
 
-  void clipRect(Rect rect, {ClipOp clipOp = ClipOp.intersect, bool doAntiAlias = true}) {
+  void clipRect(Rect rect,
+      {ClipOp clipOp = ClipOp.intersect, bool doAntiAlias = true}) {
     _canvas.clipRect(rect, clipOp: clipOp, doAntiAlias: doAntiAlias);
     _shapeHandler.addShape(ClipRectShape(rect, clipOp: clipOp));
   }
@@ -73,6 +73,7 @@ class TouchyCanvas {
     GestureDragStartCallback? onPanStart,
     GestureDragUpdateCallback? onPanUpdate,
     GestureDragDownCallback? onPanDown,
+    GestureDragEndCallback? onPanEnd,
     GestureTapDownCallback? onSecondaryTapDown,
     GestureTapUpCallback? onSecondaryTapUp,
   }) {
@@ -95,6 +96,7 @@ class TouchyCanvas {
           onPanStart: onPanStart,
           onPanUpdate: onPanUpdate,
           onPanDown: onPanDown,
+          onPanEnd: onPanEnd,
           onSecondaryTapDown: onSecondaryTapDown,
           onSecondaryTapUp: onSecondaryTapUp,
         )));
@@ -118,6 +120,7 @@ class TouchyCanvas {
     GestureDragStartCallback? onPanStart,
     GestureDragUpdateCallback? onPanUpdate,
     GestureDragDownCallback? onPanDown,
+    GestureDragEndCallback? onPanEnd,
     GestureTapDownCallback? onSecondaryTapDown,
     GestureTapUpCallback? onSecondaryTapUp,
   }) {
@@ -138,6 +141,7 @@ class TouchyCanvas {
           onPanStart: onPanStart,
           onPanUpdate: onPanUpdate,
           onPanDown: onPanDown,
+          onPanEnd: onPanEnd,
           onSecondaryTapDown: onSecondaryTapDown,
           onSecondaryTapUp: onSecondaryTapUp,
         )));
@@ -160,6 +164,7 @@ class TouchyCanvas {
     GestureDragStartCallback? onPanStart,
     GestureDragUpdateCallback? onPanUpdate,
     GestureDragDownCallback? onPanDown,
+    GestureDragEndCallback? onPanEnd,
     GestureTapDownCallback? onSecondaryTapDown,
     GestureTapUpCallback? onSecondaryTapUp,
   }) {
@@ -180,6 +185,7 @@ class TouchyCanvas {
           onPanStart: onPanStart,
           onPanUpdate: onPanUpdate,
           onPanDown: onPanDown,
+          onPanEnd: onPanEnd,
           onSecondaryTapDown: onSecondaryTapDown,
           onSecondaryTapUp: onSecondaryTapUp,
         )));
@@ -208,6 +214,7 @@ class TouchyCanvas {
     GestureDragStartCallback? onPanStart,
     GestureDragUpdateCallback? onPanUpdate,
     GestureDragDownCallback? onPanDown,
+    GestureDragEndCallback? onPanEnd,
     GestureTapDownCallback? onSecondaryTapDown,
     GestureTapUpCallback? onSecondaryTapUp,
   }) {
@@ -228,6 +235,7 @@ class TouchyCanvas {
           onPanStart: onPanStart,
           onPanUpdate: onPanUpdate,
           onPanDown: onPanDown,
+          onPanEnd: onPanEnd,
           onSecondaryTapDown: onSecondaryTapDown,
           onSecondaryTapUp: onSecondaryTapUp,
         )));
@@ -251,6 +259,7 @@ class TouchyCanvas {
     GestureDragStartCallback? onPanStart,
     GestureDragUpdateCallback? onPanUpdate,
     GestureDragDownCallback? onPanDown,
+    GestureDragEndCallback? onPanEnd,
     GestureTapDownCallback? onSecondaryTapDown,
     GestureTapUpCallback? onSecondaryTapUp,
   }) {
@@ -271,6 +280,7 @@ class TouchyCanvas {
           onPanStart: onPanStart,
           onPanUpdate: onPanUpdate,
           onPanDown: onPanDown,
+          onPanEnd: onPanEnd,
           onSecondaryTapDown: onSecondaryTapDown,
           onSecondaryTapUp: onSecondaryTapUp,
         )));
@@ -293,6 +303,7 @@ class TouchyCanvas {
     GestureDragStartCallback? onPanStart,
     GestureDragUpdateCallback? onPanUpdate,
     GestureDragDownCallback? onPanDown,
+    GestureDragEndCallback? onPanEnd,
     GestureTapDownCallback? onSecondaryTapDown,
     GestureTapUpCallback? onSecondaryTapUp,
   }) {
@@ -313,6 +324,7 @@ class TouchyCanvas {
           onPanStart: onPanStart,
           onPanUpdate: onPanUpdate,
           onPanDown: onPanDown,
+          onPanEnd: onPanEnd,
           onSecondaryTapDown: onSecondaryTapDown,
           onSecondaryTapUp: onSecondaryTapUp,
         )));
@@ -336,6 +348,7 @@ class TouchyCanvas {
     GestureDragStartCallback? onPanStart,
     GestureDragUpdateCallback? onPanUpdate,
     GestureDragDownCallback? onPanDown,
+    GestureDragEndCallback? onPanEnd,
     GestureTapDownCallback? onSecondaryTapDown,
     GestureTapUpCallback? onSecondaryTapUp,
   }) {
@@ -360,6 +373,7 @@ class TouchyCanvas {
           onPanStart: onPanStart,
           onPanUpdate: onPanUpdate,
           onPanDown: onPanDown,
+          onPanEnd: onPanEnd,
           onSecondaryTapDown: onSecondaryTapDown,
           onSecondaryTapUp: onSecondaryTapUp,
         )));
@@ -382,6 +396,7 @@ class TouchyCanvas {
     GestureDragStartCallback? onPanStart,
     GestureDragUpdateCallback? onPanUpdate,
     GestureDragDownCallback? onPanDown,
+    GestureDragEndCallback? onPanEnd,
     GestureTapDownCallback? onSecondaryTapDown,
     GestureTapUpCallback? onSecondaryTapUp,
   }) {
@@ -402,12 +417,14 @@ class TouchyCanvas {
           onPanStart: onPanStart,
           onPanUpdate: onPanUpdate,
           onPanDown: onPanDown,
+          onPanEnd: onPanEnd,
           onSecondaryTapDown: onSecondaryTapDown,
           onSecondaryTapUp: onSecondaryTapUp,
         )));
   }
 
-  void drawShadow(Path path, Color color, double elevation, bool transparentOccluder) {
+  void drawShadow(
+      Path path, Color color, double elevation, bool transparentOccluder) {
     _canvas.drawShadow(path, color, elevation, transparentOccluder);
     // _shapeHandler.addShape(PathShape(path));
   }
@@ -430,11 +447,14 @@ class TouchyCanvas {
     GestureDragStartCallback? onPanStart,
     GestureDragUpdateCallback? onPanUpdate,
     GestureDragDownCallback? onPanDown,
+    GestureDragEndCallback? onPanEnd,
     GestureTapDownCallback? onSecondaryTapDown,
     GestureTapUpCallback? onSecondaryTapUp,
   }) {
     _canvas.drawImage(image, p, paint);
-    _shapeHandler.addShape(Rectangle(Rect.fromLTWH(p.dx, p.dy, image.width.toDouble(), image.height.toDouble()),
+    _shapeHandler.addShape(Rectangle(
+        Rect.fromLTWH(
+            p.dx, p.dy, image.width.toDouble(), image.height.toDouble()),
         paint: paint,
         hitTestBehavior: hitTestBehavior,
         gestureMap: TouchCanvasUtil.getGestureCallbackMap(
@@ -450,6 +470,7 @@ class TouchyCanvas {
           onPanStart: onPanStart,
           onPanUpdate: onPanUpdate,
           onPanDown: onPanDown,
+          onPanEnd: onPanEnd,
           onSecondaryTapDown: onSecondaryTapDown,
           onSecondaryTapUp: onSecondaryTapUp,
         )));
@@ -475,6 +496,7 @@ class TouchyCanvas {
     GestureDragStartCallback? onPanStart,
     GestureDragUpdateCallback? onPanUpdate,
     GestureDragDownCallback? onPanDown,
+    GestureDragEndCallback? onPanEnd,
     GestureTapDownCallback? onSecondaryTapDown,
     GestureTapUpCallback? onSecondaryTapUp,
   }) {
@@ -495,6 +517,7 @@ class TouchyCanvas {
             onPanStart: null,
             onPanUpdate: null,
             onPanDown: null,
+            onPanEnd: null,
             onSecondaryTapDown: null,
             onSecondaryTapUp: null));
     _shapeHandler.addShape(arc);

@@ -97,7 +97,9 @@ class ShapeHandler {
         TouchCanvasUtil.getPointFromGestureDetail(gesture.gestureDetail), scrollController, direction));
     if (!_registeredGestures.contains(gesture.gestureType)) return;
 
-    var touchedShapes = _getTouchedShapes(touchPoint);
+    final fixedTouchPoint = gesture.gestureType == GestureType.onPanEnd ? Offset(touchPoint.dx.abs(), touchPoint.dy.abs()) : touchPoint;
+
+    var touchedShapes = _getTouchedShapes(fixedTouchPoint);
     if (touchedShapes.isEmpty) return;
     for (var touchedShape in touchedShapes) {
       if (touchedShape.registeredGestures.contains(gesture.gestureType)) {
